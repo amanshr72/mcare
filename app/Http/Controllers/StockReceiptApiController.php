@@ -58,7 +58,7 @@ class StockReceiptApiController extends Controller
                 'reference_date' => $request->refrence_date,
                 'user_prefix' => $request->user_prefix,
                 'branch_code' => 2,
-                'doc_prefix' => 'REC',
+                'doc_prefix' => 'SR',
                 'issued_to' => '',
                 'godown_name' => 'MAIN',
                 'received_from' => 'RKSS',
@@ -103,7 +103,7 @@ class StockReceiptApiController extends Controller
                 $filteredItemData['LotNo'] = "CB-1";
                 $requestData = [
                     "Branch_Code" => 2,
-                    "Doc_Prefix" => "REC",
+                    "Doc_Prefix" => "SR",
                     "IssueTo" => "",
                     "GodownName" => "MAIN",
                     "ReceivedFrom" => "RKSS",
