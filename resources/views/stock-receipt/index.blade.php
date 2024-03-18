@@ -11,7 +11,7 @@
         </div>
 
         <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
-            <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
+            <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-2">
                 <div class="w-full md:w-1/2">
                     <form class="flex items-center">
                         <label for="simple-search" class="sr-only">Search</label>
@@ -50,7 +50,7 @@
                         <svg class="h-3.5 w-3.5 mr-2" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
                         </svg>
-                        Add Stock Receipt
+                        Add Stock
                     </a>
                     <button id="resstFilterBtn" data-tooltip-target="reset-filter" class="focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">
                         <span class="material-symbols-outlined">filter_alt_off</span>
@@ -58,9 +58,14 @@
                             Reset Filter
                         </div>
                     </button>
-                    <a href="{{ route('view.pushList') }}" type="button" class="flex items-center justify-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 focus:outline-none">
-                        Push Stock
-                    </a>
+                    <div class="inline-flex rounded-md shadow-sm" role="group">
+                        <a href="{{ route('push.allStock') }}" type="button" class="px-4 py-2 text-sm font-medium text-white bg-gray-600 border border-gray-200 rounded-s-lg hover:bg-gray-800">
+                            Push All Stock
+                        </a>
+                        <a href="{{ route('view.pushList') }}" type="button" class="px-4 py-2 text-sm font-medium text-white bg-gray-600 border border-gray-200 rounded-e-lg hover:bg-gray-800">
+                            Stock List
+                        </a>
+                    </div>
                 </div>
             </div>
             
