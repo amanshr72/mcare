@@ -14,22 +14,8 @@
             <form class="mt-10 max-w-7xl mx-auto" id="formStep1">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     <div>
-                        <label for="vendor_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vendor Name</label>
-                        <select id="vendor_name" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light">
-                            <option value="" disabled selected>Select Vendor</option>
-                            @foreach ($vendors as $vendor)
-                                <option value="{{ $vendor->companyName }}">{{ $vendor->companyName }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div>
                         <label for="location" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
-                        <select id="location" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light">
-                            <option value="" disabled selected>Select Location</option>
-                            <option value="Delhi">Delhi</option>
-                            <option value="Mumbai">Mumbai</option>
-                            <option value="Kolkata">Kolkata</option>
-                        </select>
+                        <input type="text" readonly id="location" value="{{ $location->branchName }}" placeholder="Location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                     </div>
                     <div>
                         <label for="refrence_document_no" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Refrence Document No.</label>
@@ -77,10 +63,6 @@
                         </select>
                     </div>
                     <div>
-                        <label for="vendorName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vendor Name</label>
-                        <input type="text" id="vendorName" name="vendor_name" value="" readonly placeholder="Vendor Name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                    </div>
-                    <div>
                         <label for="item_code" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Item Code</label>
                         <input type="text" id="item_code_val" placeholder="Item Code" readonly class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                     </div>
@@ -108,14 +90,8 @@
                     <div>
                         <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
                         <input type="text" id="price_val" readonly class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-
                     </div>
-                    <div>
-                        <label for="tax" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tax</label>
-                        <input type="text" id="tax_val" readonly class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-
-                    </div>
-                    <div class="lg:pt-7">
+                    <div class="lg:py-7">
                         <button type="button" id="addToList" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                            + Add to list
                         </button>
@@ -128,23 +104,17 @@
                             <tr>
                                 <th scope="col" class="p-3">Action</th>
                                 <th scope="col" class="p-3">Item Name</th>
-                                <th scope="col" class="p-3">Vendor Name</th>
                                 <th scope="col" class="p-3">Item Code</th>
-                                <th scope="col" class="p-3">Available Stock</th>
                                 <th scope="col" class="p-3">Quantity</th>
                                 <th scope="col" class="p-3">Batch No.</th>
                                 <th scope="col" class="p-3">MFG Date</th>
                                 <th scope="col" class="p-3">MFG Name</th>
                                 <th scope="col" class="p-3">Price</th>
-                                <th scope="col" class="p-3">Tax</th>
-                                <th scope="col" class="p-3">tax Amount</th>
-                                <th scope="col" class="p-3">Gross Amount</th>
                                 <th scope="col" class="p-3">Final Amount</th>
                             </tr>
                         </thead>
                         <tbody id="listBody">
                             {{-- <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"><td class="p-3"></tr> --}}
-                            
                         </tbody>
                     </table>
                 </div>

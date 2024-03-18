@@ -10,6 +10,7 @@ class StockReceipt extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'item_masters_id',
         'list_items',
         'groupid',

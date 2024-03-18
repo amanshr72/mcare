@@ -37,6 +37,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('stock-receipt-filter', [StockReceiptApiController::class, 'filter'])->name('stockReceiptFilter');
     Route::get('stock-receipt-search', [StockReceiptApiController::class, 'search'])->name('stockReceiptSearch');
     
+    Route::get('push-all-stock', [StockReceiptApiController::class, 'pushAllStock'])->name('push.allStock');
     Route::get('push-stock-receipt', [StockReceiptApiController::class, 'pushStockList'])->name('view.pushList');
     Route::get('push-stock-form/{id}', [StockReceiptApiController::class, 'pushStockEditForm'])->name('edit.pushForm');
     Route::put('update-push-stock-receipt', [StockReceiptApiController::class, 'pushStockUpdate'])->name('push.update');
