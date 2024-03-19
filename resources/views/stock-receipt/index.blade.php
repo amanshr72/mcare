@@ -1,5 +1,6 @@
 <x-app-layout>
-
+    <?php $count = App\Models\StockReceiptListItem::where('Status', 0)->orWhere('Status', Null)->count(); ?>
+    
     <div class="mx-auto max-w-screen-xl">
         
         <div class="text-left">
@@ -65,10 +66,10 @@
                         </div>
                     </button>
                     <div class="inline-flex rounded-md shadow-sm" role="group">
-                        <a href="{{ route('push.allStock') }}" type="button" class="px-4 py-2 text-sm font-medium text-white bg-gray-600 border border-gray-200 rounded-s-lg hover:bg-gray-800">
+                        <a href="{{ route('push.allStock') }}" type="button" @if($count == 0) onclick="return false;" style="pointer-events: none" @endif class="px-4 py-2 text-sm font-medium text-white bg-gray-600 border border-gray-200 rounded-s-lg hover:bg-gray-800">
                             Push All Stock
                         </a>
-                        <a href="{{ route('view.pushList') }}" type="button" class="px-4 py-2 text-sm font-medium text-white bg-gray-600 border border-gray-200 rounded-e-lg hover:bg-gray-800">
+                        <a href="{{ route('view.pushList') }}" type="button" @if($count == 0) onclick="return false;" style="pointer-events: none" @endif class="px-4 py-2 text-sm font-medium text-white bg-gray-600 border border-gray-200 rounded-e-lg hover:bg-gray-800">
                             Stock List
                         </a>
                     </div>
