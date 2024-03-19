@@ -4,9 +4,15 @@
         
         <div class="text-left">
             @if(session('success'))
-                <x-alert type="success" :message="session('success')" />
+                <x-alert type="success" :message="session('success')" />            
             @elseif(session('danger'))
-                <x-alert type="danger" :message="session('danger')" />
+                <x-alert type="danger" :message="$message" />
+            @elseif(session('pushAllStockError'))
+                <ul class="alert alert-danger py-2 px-2 bg-red-50 dark:bg-gray-800 text-red-800 dark:text-red-400 list-decimal">
+                    @foreach (session('pushAllStockError') as $msg)
+                        <li>{!! $msg !!}</li>    
+                    @endforeach
+                </ul>    
             @endif
         </div>
 

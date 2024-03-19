@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2024 at 01:07 PM
+-- Generation Time: Mar 19, 2024 at 09:01 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.1.25
 
@@ -488,13 +488,15 @@ CREATE TABLE `stock_receipts` (
 --
 
 INSERT INTO `stock_receipts` (`id`, `user_id`, `item_masters_id`, `groupid`, `po_prefix`, `po_number`, `branch_code`, `doc_prefix`, `issued_to`, `godown_name`, `received_from`, `list_items`, `product_name`, `category`, `vendor_company`, `Item_Code`, `user_code`, `Qty`, `user_qty`, `Price`, `User_Price`, `Discount`, `Tax`, `SubTotal`, `Ftotal`, `UOM`, `U_Desc`, `notes`, `created_on`, `created_by`, `po_type`, `status`, `cancelledBy`, `cancelledOn`, `Location`, `Address_as`, `Delivery_Address`, `comment`, `refernece_document_no`, `reference_date`, `user_prefix`, `batch_number`, `manu_date`, `manu_name`, `response_status`, `Message`, `LastSavedDocNo`, `LastSavedCode`, `created_at`, `updated_at`) VALUES
-(1, 1, NULL, NULL, NULL, NULL, '2', 'IS', 'DAMAGE', '', '', NULL, NULL, NULL, 'SHIVAM LABEL -NEW DELHI', '[\"8900010\",\"8900001\",\"8900002\",\"8900001\"]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-15 00:27:35', '2024-03-15 00:27:35'),
-(2, 1, NULL, NULL, NULL, NULL, '2', 'IS', 'DAMAGE', '', '', NULL, NULL, NULL, 'SHIVAM LABEL -NEW DELHI', '[\"8900010\",\"8900001\",\"8900002\",\"8900001\"]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, '2024-03-15 00:36:53', '2024-03-15 00:36:55'),
-(3, 1, NULL, NULL, NULL, NULL, '2', 'IS', 'DAMAGE', '', '', NULL, NULL, NULL, NULL, '[\"8900001\",\"8900001\",\"8900001\",\"8900001\"]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, '2024-03-15 00:37:30', '2024-03-15 00:37:32'),
-(4, 1, NULL, NULL, NULL, NULL, '2', 'SR', '', 'MAIN', 'RKSS', NULL, NULL, NULL, NULL, '[\"8900002\"]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, '2024-03-18 05:37:15', '2024-03-18 05:37:17'),
-(5, 1, NULL, NULL, NULL, NULL, '2', 'SR', '', 'MAIN', 'RKSS', NULL, NULL, NULL, NULL, '[\"8900003\"]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, '2024-03-18 05:37:46', '2024-03-18 05:37:48'),
-(6, 1, NULL, NULL, NULL, NULL, '2', 'SR', '', 'MAIN', 'RKSS', NULL, NULL, NULL, NULL, '[\"PM2\",\"PM2\"]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-18 06:27:50', '2024-03-18 06:27:50'),
-(7, 1, NULL, NULL, NULL, NULL, '2', 'SR', '', 'MAIN', 'RKSS', NULL, NULL, NULL, NULL, '[\"PM2\",\"PM2\"]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, '2024-03-18 06:28:25', '2024-03-18 06:28:27');
+(1, 1, NULL, NULL, NULL, NULL, '2', 'IS', 'DAMAGE', '', 'SR-1#798A', NULL, NULL, NULL, 'SHIVAM LABEL -NEW DELHI', '[\"8900010\",\"8900001\",\"8900002\",\"8900001\"]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-15 00:27:35', '2024-03-15 00:27:35'),
+(2, 1, NULL, NULL, NULL, NULL, '2', 'IS', 'DAMAGE', '', 'SR-2#898B', NULL, NULL, NULL, 'SHIVAM LABEL -NEW DELHI', '[\"8900010\",\"8900001\",\"8900002\",\"8900001\"]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, '2024-03-15 00:36:53', '2024-03-15 00:36:55'),
+(3, 1, NULL, NULL, NULL, NULL, '2', 'IS', 'DAMAGE', '', 'SR-3#7K8A', NULL, NULL, NULL, NULL, '[\"8900001\",\"8900001\",\"8900001\",\"8900001\"]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, '2024-03-15 00:37:30', '2024-03-15 00:37:32'),
+(4, 1, NULL, NULL, NULL, NULL, '2', 'SR', '', 'MAIN', 'SR-4#7ASS', NULL, NULL, NULL, NULL, '[\"8900002\"]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, '2024-03-18 05:37:15', '2024-03-18 05:37:17'),
+(5, 1, NULL, NULL, NULL, NULL, '2', 'SR', '', 'MAIN', 'SR-5#7TOS', NULL, NULL, NULL, NULL, '[\"8900003\"]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', NULL, NULL, NULL, '2024-03-18 05:37:46', '2024-03-18 05:37:48'),
+(6, 1, NULL, NULL, NULL, NULL, '2', 'SR', '', 'MAIN', 'SR-6#7FUS', NULL, NULL, NULL, NULL, '[\"PM2\",\"PM2\"]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-18 06:27:50', '2024-03-18 06:27:50'),
+(7, 1, NULL, NULL, NULL, NULL, '2', 'SR', '', 'MAIN', 'SR-7#7POU', NULL, NULL, NULL, NULL, '[\"PM2\",\"PM2\"]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0', NULL, NULL, NULL, '2024-03-18 06:28:25', '2024-03-18 06:28:27'),
+(8, 1, NULL, NULL, NULL, NULL, '2', 'SR', '', 'MAIN', 'SR-8#7AJH', NULL, NULL, NULL, NULL, '[\"PM11\"]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-18 06:39:51', '2024-03-18 06:39:51'),
+(9, 1, NULL, NULL, NULL, NULL, '2', 'SR', '', 'MATERIALS', 'SR-9#AS9845', NULL, NULL, NULL, NULL, '[\"PM11\"]', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-19', '89A7', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-03-19 02:30:51', '2024-03-19 02:30:51');
 
 -- --------------------------------------------------------
 
@@ -536,13 +538,13 @@ CREATE TABLE `stock_receipt_list_items` (
 --
 
 INSERT INTO `stock_receipt_list_items` (`id`, `item_masters_id`, `stock_receipts_id`, `item_name`, `vendor_name`, `item_code`, `available_stock`, `batch_number`, `branch_code`, `tax`, `tax_amount`, `gross_amount`, `final_amount`, `lot_no`, `quantity`, `rate`, `price`, `mfg_date`, `mfg_name`, `expiry_date`, `Status`, `Message`, `LastSavedDocNo`, `LastSavedCode`, `created_at`, `updated_at`) VALUES
-(1, 10, 1, 'BOX FILE  (PVC)', 'SHIVAM LABEL -NEW DELHI', '8900010', '856', '', NULL, '12', '6.6', '55', '61.6', NULL, '10', NULL, '55.00', NULL, '', NULL, '0', 'Invalid Item Code...8900010', NULL, NULL, '2024-03-15 00:27:35', '2024-03-18 05:29:41'),
+(1, 10, 1, 'BOX FILE  (PVC)', 'SHIVAM LABEL -NEW DELHI', '8900010', '856', '', NULL, '12', '6.6', '55', '61.6', NULL, '10', NULL, '55.00', NULL, '', NULL, '0', 'Invalid Godown Name...Please Check', NULL, NULL, '2024-03-15 00:27:35', '2024-03-19 02:08:24'),
 (2, 1, 1, 'CENTURY PAPER A4', 'SHIVAM LABEL -NEW DELHI', '8900001', '5000', '', NULL, '12', '17.76', '148', '165.76', NULL, '1', NULL, '148.00', NULL, '', NULL, '1', 'Document Saved Sucessfully...', NULL, NULL, '2024-03-15 00:27:35', '2024-03-15 00:27:41'),
-(3, 2, 1, 'CENTURY PAPER LEGAL', 'SHIVAM LABEL -NEW DELHI', '8900002', '900', '', NULL, '12', '17.76', '148', '165.76', NULL, '25698', NULL, '148.00', NULL, '', NULL, '0', 'Invalid Item Code...8900010', NULL, NULL, '2024-03-15 00:27:35', '2024-03-18 05:28:49'),
+(3, 2, 1, 'CENTURY PAPER LEGAL', 'SHIVAM LABEL -NEW DELHI', '8900002', '900', '', NULL, '12', '17.76', '148', '165.76', NULL, '25698', NULL, '148.00', NULL, '', NULL, '0', 'Invalid Godown Name...Please Check', NULL, NULL, '2024-03-15 00:27:35', '2024-03-19 02:08:25'),
 (4, 1, 1, 'CENTURY PAPER A4', 'SHIVAM LABEL -NEW DELHI', '8900001', '5000', '', NULL, '12', '17.76', '148', '165.76', NULL, '1', NULL, '148.00', NULL, '', NULL, '1', 'Document Saved Sucessfully...', NULL, NULL, '2024-03-15 00:27:35', '2024-03-15 00:27:41'),
-(5, 10, 2, 'BOX FILE  (PVC)', 'SHIVAM LABEL -NEW DELHI', '8900010', '856', '', NULL, '12', '6.6', '55', '61.6', NULL, '10', NULL, '55.00', NULL, '', NULL, '0', 'Invalid Item Code...8900010', NULL, NULL, '2024-03-15 00:36:53', '2024-03-18 05:28:51'),
+(5, 10, 2, 'BOX FILE  (PVC)', 'SHIVAM LABEL -NEW DELHI', '8900010', '856', '', NULL, '12', '6.6', '55', '61.6', NULL, '10', NULL, '55.00', NULL, '', NULL, '0', 'Invalid Godown Name...Please Check', NULL, NULL, '2024-03-15 00:36:53', '2024-03-19 02:08:27'),
 (6, 1, 2, 'CENTURY PAPER A4', 'SHIVAM LABEL -NEW DELHI', '8900001', '5000', '', NULL, '12', '17.76', '148', '165.76', NULL, '1', NULL, '148.00', NULL, '', NULL, '1', 'Document Saved Sucessfully...', NULL, NULL, '2024-03-15 00:36:53', '2024-03-15 00:36:59'),
-(7, 2, 2, 'CENTURY PAPER LEGAL', 'SHIVAM LABEL -NEW DELHI', '8900002', '900', '', NULL, '12', '17.76', '148', '165.76', NULL, '25698', NULL, '148.00', NULL, '', NULL, '0', 'Invalid Item Code...8900010', NULL, NULL, '2024-03-15 00:36:53', '2024-03-18 05:28:52'),
+(7, 2, 2, 'CENTURY PAPER LEGAL', 'SHIVAM LABEL -NEW DELHI', '8900002', '900', '', NULL, '12', '17.76', '148', '165.76', NULL, '25698', NULL, '148.00', NULL, '', NULL, '0', 'Invalid Godown Name...Please Check', NULL, NULL, '2024-03-15 00:36:53', '2024-03-19 02:08:28'),
 (8, 1, 2, 'CENTURY PAPER A4', 'SHIVAM LABEL -NEW DELHI', '8900001', '5000', '', NULL, '12', '17.76', '148', '165.76', NULL, '1', NULL, '148.00', NULL, '', NULL, '1', 'Document Saved Sucessfully...', NULL, NULL, '2024-03-15 00:36:53', '2024-03-15 00:36:59'),
 (9, 1, 3, 'CENTURY PAPER A4', '', '8900001', '5000', '', NULL, '12', '17.76', '148', '165.76', NULL, '1', NULL, '148.00', NULL, '', NULL, '1', 'Document Saved Sucessfully...', NULL, NULL, '2024-03-15 00:37:30', '2024-03-15 00:37:37'),
 (10, 1, 3, 'CENTURY PAPER A4', '', '8900001', '5000', '', NULL, '12', '17.76', '148', '165.76', NULL, '1', NULL, '148.00', NULL, '', NULL, '1', 'Document Saved Sucessfully...', NULL, NULL, '2024-03-15 00:37:30', '2024-03-15 00:37:37'),
@@ -550,8 +552,10 @@ INSERT INTO `stock_receipt_list_items` (`id`, `item_masters_id`, `stock_receipts
 (12, 1, 3, 'CENTURY PAPER A4', '', '8900001', '5000', '', NULL, '12', '17.76', '148', '165.76', NULL, '1', NULL, '148.00', NULL, '', NULL, '1', 'Document Saved Sucessfully...', NULL, NULL, '2024-03-15 00:37:30', '2024-03-15 00:37:37'),
 (13, 2, 4, 'CENTURY PAPER LEGAL', '', '8900002', '900', '', NULL, '12', '17.76', '148', '165.76', NULL, '1', NULL, '148.00', NULL, '', NULL, '1', 'Document Saved Sucessfully...', NULL, NULL, '2024-03-18 05:37:15', '2024-03-18 05:37:17'),
 (14, 3, 5, 'USE & THROUGH PEN', '', '8900003', '5000', '', NULL, '12', '0.156', '1.3', '1.456', NULL, '1', NULL, '1.30', NULL, '', NULL, '1', 'Document Saved Sucessfully...', NULL, NULL, '2024-03-18 05:37:46', '2024-03-18 05:37:48'),
-(15, NULL, 7, 'Beyond Blue Bottle', NULL, 'PM2', NULL, 'ASY78', NULL, NULL, NULL, NULL, '200', NULL, '200', NULL, '1', '2024-03-18 00:00:00', 'JK', NULL, '0', 'Invalid Item Code...PM2', NULL, NULL, '2024-03-18 06:28:25', '2024-03-18 06:28:29'),
-(16, NULL, 7, 'Beyond Blue Bottle', NULL, 'PM2', NULL, 'ASY78', NULL, NULL, NULL, NULL, '200', NULL, '200', NULL, '1', '2024-03-18 00:00:00', 'JD', NULL, '0', 'Invalid Item Code...PM2', NULL, NULL, '2024-03-18 06:28:25', '2024-03-18 06:28:29');
+(15, NULL, 7, 'Beyond Blue Bottle', NULL, 'PM2', NULL, 'ASY78', NULL, NULL, NULL, NULL, '200', NULL, '200', NULL, '1', '2024-03-18 00:00:00', 'JK', NULL, '0', 'Invalid Godown Name...Please Check', NULL, NULL, '2024-03-18 06:28:25', '2024-03-19 02:08:30'),
+(16, NULL, 7, 'Beyond Blue Bottle', NULL, 'PM2', NULL, 'ASY78', NULL, NULL, NULL, NULL, '200', NULL, '200', NULL, '1', '2024-03-18 00:00:00', 'JD', NULL, '0', 'Invalid Godown Name...Please Check', NULL, NULL, '2024-03-18 06:28:25', '2024-03-19 02:08:31'),
+(17, NULL, 8, 'SHIPPER- DETERGENT POWDER 1 KG', NULL, 'PM11', NULL, 'ATYU676', NULL, NULL, NULL, NULL, '5649', NULL, '5649', NULL, '1', '2024-03-18 00:00:00', 'JD', NULL, '0', 'Invalid Godown Name...Please Check', NULL, NULL, '2024-03-18 06:39:51', '2024-03-19 02:08:33'),
+(18, NULL, 9, 'SHIPPER- DETERGENT POWDER 1 KG', NULL, 'PM11', NULL, 'ATYU676', NULL, NULL, NULL, NULL, '100', NULL, '100', NULL, '1', '2024-03-19 00:00:00', 'JK N', NULL, NULL, NULL, NULL, NULL, '2024-03-19 02:30:51', '2024-03-19 02:30:51');
 
 -- --------------------------------------------------------
 
@@ -566,6 +570,8 @@ CREATE TABLE `users` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `ul` varchar(255) DEFAULT NULL,
+  `user_group` varchar(20) DEFAULT NULL,
+  `user_type` varchar(90) DEFAULT NULL,
   `status` enum('Enabled','Disabled') DEFAULT NULL,
   `view` int(11) DEFAULT NULL,
   `group_id` bigint(20) UNSIGNED DEFAULT NULL,
@@ -582,8 +588,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `phone`, `email`, `password`, `ul`, `status`, `view`, `group_id`, `state_id`, `state`, `role`, `last_login`, `last_logout`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', '', 'admin@gmail.com', '$2y$12$W1I2mGUnZ9dOV6bkXYL9tO6G00PusFi.hVsFDygRctq...', '2', NULL, NULL, NULL, NULL, 'Delhi', 'superadmin', NULL, NULL, '2024-03-18 08:21:14', '2024-03-18 08:21:14');
+INSERT INTO `users` (`id`, `name`, `phone`, `email`, `password`, `ul`, `user_group`, `user_type`, `status`, `view`, `group_id`, `state_id`, `state`, `role`, `last_login`, `last_logout`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', '', 'admin@gmail.com', '$2y$10$i1M6J1eAht71xTpaE5iuuO5eL5AJDhniROpKLj3uFHcDcrnDUf/76', '2', NULL, '', NULL, NULL, NULL, NULL, 'Delhi', 'superadmin', NULL, NULL, '2024-03-18 08:21:14', '2024-03-18 08:21:14'),
+(2, 'GLAMIC HYGIENE', '9871103624', 'GLAMICHYGIENE@YAHOO.COM', 'b59a62e943ac92fbf4abff62e97048335658e259ad74c2798a8da0b927696da0fbc0a22999e8e91f01529506bfffae6f24fc68c0729e07374d44a7b6073ab8be', '2', NULL, '', 'Enabled', 1, 1, 1, '', '36', '2024-03-18 20:28:36', '2023-10-26 12:26:31', NULL, NULL),
+(3, 'JERICHEM', '9105590586', 'JERICHEM@JERICHO.CO.IN', '57e1e94b874aa87fab9fe8a67674b113b846aacac0b875a82a152f0652907d8e7413badc49b84ca3283c727a5e6507a58a1f594350a9948371790eaa6a38be4e', '5', 'none', '36', 'Enabled', 1, 1, 1, '', '', '2023-07-25 16:32:18', '2024-03-19 09:27:02', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -807,19 +815,19 @@ ALTER TABLE `stock_outs`
 -- AUTO_INCREMENT for table `stock_receipts`
 --
 ALTER TABLE `stock_receipts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `stock_receipt_list_items`
 --
 ALTER TABLE `stock_receipt_list_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user_item_master`

@@ -9,7 +9,7 @@ class Product_MST extends Model
 {
     use HasFactory;
     
-    protected $table = 'Product_MST';
+    protected $table = 'product_mst';
 
     protected $fillable = [
         'iem_id',
