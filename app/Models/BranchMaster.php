@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class BranchMaster extends Model
 {
     use HasFactory;
-    protected $table = 'm99BranchMaster';
+    protected $table = 'm99branchmaster';
 
     protected $fillable = [
         'groupid',

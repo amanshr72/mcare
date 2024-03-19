@@ -55,7 +55,7 @@ class StockReceiptApiController extends Controller
 
     public function store(Request $request)
     {
-        try {
+        try {            
             $listItemsArray = json_decode($request->input('listItems'), true);
             
             if ($listItemsArray) {
@@ -77,8 +77,8 @@ class StockReceiptApiController extends Controller
                 'branch_code' => $this->branchCode,
                 'doc_prefix' => 'SR',
                 'issued_to' => '',
-                'godown_name' => 'MAIN',
-                'received_from' => 'RKSS',
+                'godown_name' => $this->godownName,
+                'received_from' => $request->refrence_document_no,  /* Logic for serialization writen in Model */
             ]);
 
             if (count($listItemsArray) > 0) {
@@ -102,57 +102,7 @@ class StockReceiptApiController extends Controller
                 }
             }
 
-            $selectedColumns = ['itemCodeVal', 'lotNo', 'quantityVal', 'priceVal', 'finalAmount', 'mfgDateVal', 'expiryDate'];
-            $filterlListItemApiData = array_map(function ($item) use ($selectedColumns) {
-                $selectedItem = array_intersect_key($item, array_flip($selectedColumns));
-                $renamedItem = array_combine(['ItemCode', 'LotNo', 'Quantity', 'Rate', 'Mrp', 'Manufacturing_Date', 'Expiry_Date'], $selectedItem);
-                return $renamedItem;
-            }, $listItemsArray);
-            
-            // Post Data To API 
-            /* if($filterlListItemApiData){
-                foreach ($filterlListItemApiData as $filteredItemData) {
-                    $filteredItemData['LotNo'] = "CB-1";
-                    $requestData = [
-                        "Branch_Code" => 2,
-                        "Doc_Prefix" => "SR",
-                        "IssueTo" => "",
-                        "GodownName" => "MAIN",
-                        "ReceivedFrom" => "RKSS",
-                        "ListItems" => [$filteredItemData]
-                    ];
-
-                    $jsonRequestData = $requestData;
-                    $itemCode = $jsonRequestData['ListItems'][0]['ItemCode'];
-
-                    $response = Http::withHeaders([
-                        'Content-Type' => 'application/json', 
-                        'Authorization' => 'Basic ' . $this->credentials,
-                    ])->post($this->saveReceiptStockEndPoint, $jsonRequestData);
-                    
-                    foreach($listItemIds as $id){
-                        $istItem = StockReceiptListItem::where('stock_receipts_id', $stockReceipt->id)->where('item_code', $itemCode)->find($id);
-
-                        if($istItem !== null){
-                            $status = $response['Status'] == true ? true : false;
-                            $message = $response['Message'];
-                            $istItem->update(['Status' => $status, 'Message' => $message]);
-                            $allStatus[] = $response['Status'];
-                        }
-                    }
-
-                    $responseStatus = !in_array(false, $allStatus, true) ? 1 : 0;
-                    StockReceipt::find($stockReceipt->id)->update(['response_status' => $responseStatus]);
-                }
-                if ($response['Status'] == true) {
-                    return redirect()->route('stock-receipt.index')->with('success', $response['Message']);
-                } else {
-                    return redirect()->route('stock-receipt.index')->with('danger', $response['Message']);
-                }
-            } */
-
             return redirect()->route('stock-receipt.index')->with('success', 'Data has been uploaded successfully');
-            
 
         } catch (Exception $e) {
             throw $e;
@@ -162,7 +112,7 @@ class StockReceiptApiController extends Controller
 
     public function pushAllStock(){
         $stockReceipts = StockReceipt::where('branch_code', $this->branchCode)->where('response_status', 0)->orWhereNull('response_status')->get();
-        $listItems = StockReceiptListItem::whereIn('stock_receipts_id', $stockReceipts->pluck('id')->toArray())->where('Status', 0)->orWhereNull('Status')->get();
+        $listItems = StockReceiptListItem::with('stockReceipt')->whereIn('stock_receipts_id', $stockReceipts->pluck('id')->toArray())->where('Status', 0)->orWhereNull('Status')->get();
         $listItemArray = [];
         $allStatusTrue = true;
 
@@ -176,13 +126,13 @@ class StockReceiptApiController extends Controller
                 'Manufacturing_Date' => null,
                 'Expiry_Date' => null
             ];
-
+            
             $jsonRequestData = [
                 "Branch_Code" => $this->branchCode,
                 "Doc_Prefix" => "SR",
                 "IssueTo" => "",
                 "GodownName" => $this->godownName,
-                "ReceivedFrom" => "RKSS",
+                "ReceivedFrom" => $item->stockReceipt->received_from,
                 'ListItems' => [$listItemArray]
             ];
             

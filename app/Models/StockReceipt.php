@@ -59,6 +59,21 @@ class StockReceipt extends Model
         'LastSavedCode'
     ];
 
+    public static function create(array $attributes = []){
+        $attributes['received_from'] = static::generateNextInvoiceNumber($attributes['reference_document_no']);
+        return static::query()->create($attributes);
+    }
+
+    // Method to generate the next invoice number
+    protected static function generateNextInvoiceNumber($referenceDocumentNo){
+        $latest = static::latest()->first();
+        if (!$latest) {
+            return 'SR-1#' . $referenceDocumentNo;
+        }
+        $lastNumber = (int) substr($latest->received_from, 3, strpos($latest->received_from, '-', 3) - 3);
+        return 'SR-' . ($lastNumber + 1) . '#' . $referenceDocumentNo;
+    }
+
     public function stockReceiptlistItems(){
         return $this->hasMany(StockReceiptListItem::class, 'stock_receipts_id');
     }

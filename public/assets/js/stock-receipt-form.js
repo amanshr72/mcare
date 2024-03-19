@@ -10,6 +10,11 @@ function captureFormValuesAndNext(nextStep) {
         userPrefix: document.getElementById('user_prefix')?.value || '',
     };
 
+    if (s1FormValues.refrenceDocumentNo.trim() === '') {
+        alert('Reference Document Number cannot be empty.');
+        return;
+    }
+
     document.getElementById(`step${currentStep}`).style.display = 'none';
     document.getElementById(`step${nextStep}`).style.display = 'block';
     currentStep = nextStep;
