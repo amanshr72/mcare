@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('ul')->nullable();
+            $table->string('user_group', 20)->nullable();
+            $table->string('user_type', 90)->nullable();
             $table->enum('status', ['Enabled', 'Disabled'])->nullable();
             $table->integer('view')->nullable();
             $table->foreignId('group_id')->index()->nullable();

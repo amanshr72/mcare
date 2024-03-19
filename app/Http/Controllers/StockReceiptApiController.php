@@ -19,12 +19,25 @@ class StockReceiptApiController extends Controller
 {
     protected $saveReceiptStockEndPoint;
     protected $credentials;
+    protected $branchCode;
+    protected $godownName;
 
     public function __construct()
-    {
+    {   
+        // Live API
+        // $this->saveReceiptStockEndPoint = 'http://logicapi.logicerp.in/ModiCare/SaveReceiptStock';
+        // $username = 'ModiCareApi'; $password = 'ModiApi@$#';
+        // Demo API
         $this->saveReceiptStockEndPoint = 'http://demo.logicerp.com/api/SaveReceiptStock';
         $username = 'LAdmin'; $password = '1';
-        $this->credentials = base64_encode("$username:$password");   
+        $this->credentials = base64_encode("$username:$password");  
+        
+        $this->middleware(function ($request, $next) {
+            $this->branchCode = Auth::user()->ul ?? 2;  
+            $this->godownName = "MATERIALS";  
+            return $next($request);
+        });
+        
     }
 
     public function index()
@@ -34,9 +47,9 @@ class StockReceiptApiController extends Controller
     }
 
     public function create()
-    {
+    {   
         $items = Product_MST::select('item_code', 'item_name', 'category')->distinct('item_code', 'item_name')->get();
-        $location = BranchMaster::select('branchName')->where('branchCode', Auth::user()->ul)->first();
+        $location = BranchMaster::select('branchName')->where('branchCode', $this->branchCode)->first();
         return view('stock-receipt.create', compact('items', 'location'));
     }
 
@@ -44,7 +57,7 @@ class StockReceiptApiController extends Controller
     {
         try {
             $listItemsArray = json_decode($request->input('listItems'), true);
-
+            
             if ($listItemsArray) {
                 foreach ($listItemsArray as $item) {
                     $itemCode[] = $item['itemCodeVal'];
@@ -61,7 +74,7 @@ class StockReceiptApiController extends Controller
                 'reference_document_no' => $request->refrence_document_no,
                 'reference_date' => $request->refrence_date,
                 'user_prefix' => $request->user_prefix,
-                'branch_code' => 2,
+                'branch_code' => $this->branchCode,
                 'doc_prefix' => 'SR',
                 'issued_to' => '',
                 'godown_name' => 'MAIN',
@@ -97,46 +110,46 @@ class StockReceiptApiController extends Controller
             }, $listItemsArray);
             
             // Post Data To API 
-            
-            // foreach ($filterlListItemApiData as $filteredItemData) {
-            //     $filteredItemData['LotNo'] = "CB-1";
-            //     $requestData = [
-            //         "Branch_Code" => 2,
-            //         "Doc_Prefix" => "SR",
-            //         "IssueTo" => "",
-            //         "GodownName" => "MAIN",
-            //         "ReceivedFrom" => "RKSS",
-            //         "ListItems" => [$filteredItemData]
-            //     ];
+            /* if($filterlListItemApiData){
+                foreach ($filterlListItemApiData as $filteredItemData) {
+                    $filteredItemData['LotNo'] = "CB-1";
+                    $requestData = [
+                        "Branch_Code" => 2,
+                        "Doc_Prefix" => "SR",
+                        "IssueTo" => "",
+                        "GodownName" => "MAIN",
+                        "ReceivedFrom" => "RKSS",
+                        "ListItems" => [$filteredItemData]
+                    ];
 
-            //     $jsonRequestData = $requestData;
-            //     $itemCode = $jsonRequestData['ListItems'][0]['ItemCode'];
+                    $jsonRequestData = $requestData;
+                    $itemCode = $jsonRequestData['ListItems'][0]['ItemCode'];
 
-            //     $response = Http::withHeaders([
-            //         'Content-Type' => 'application/json', 
-            //         'Authorization' => 'Basic ' . $this->credentials,
-            //     ])->post($this->saveReceiptStockEndPoint, $jsonRequestData);
-                
-            //     foreach($listItemIds as $id){
-            //         $istItem = StockReceiptListItem::where('stock_receipts_id', $stockReceipt->id)->where('item_code', $itemCode)->find($id);
+                    $response = Http::withHeaders([
+                        'Content-Type' => 'application/json', 
+                        'Authorization' => 'Basic ' . $this->credentials,
+                    ])->post($this->saveReceiptStockEndPoint, $jsonRequestData);
+                    
+                    foreach($listItemIds as $id){
+                        $istItem = StockReceiptListItem::where('stock_receipts_id', $stockReceipt->id)->where('item_code', $itemCode)->find($id);
 
-            //         if($istItem !== null){
-            //             $status = $response['Status'] == true ? true : false;
-            //             $message = $response['Message'];
-            //             $istItem->update(['Status' => $status, 'Message' => $message]);
-            //             $allStatus[] = $response['Status'];
-            //         }
-            //     }
+                        if($istItem !== null){
+                            $status = $response['Status'] == true ? true : false;
+                            $message = $response['Message'];
+                            $istItem->update(['Status' => $status, 'Message' => $message]);
+                            $allStatus[] = $response['Status'];
+                        }
+                    }
 
-            //     $responseStatus = !in_array(false, $allStatus, true) ? 1 : 0;
-            //     StockReceipt::find($stockReceipt->id)->update(['response_status' => $responseStatus]);
-            // }
-
-            // if ($response['Status'] == true) {
-            //     return redirect()->route('stock-receipt.index')->with('success', $response['Message']);
-            // } else {
-            //     return redirect()->route('stock-receipt.index')->with('danger', $response['Message']);
-            // }
+                    $responseStatus = !in_array(false, $allStatus, true) ? 1 : 0;
+                    StockReceipt::find($stockReceipt->id)->update(['response_status' => $responseStatus]);
+                }
+                if ($response['Status'] == true) {
+                    return redirect()->route('stock-receipt.index')->with('success', $response['Message']);
+                } else {
+                    return redirect()->route('stock-receipt.index')->with('danger', $response['Message']);
+                }
+            } */
 
             return redirect()->route('stock-receipt.index')->with('success', 'Data has been uploaded successfully');
             
@@ -148,12 +161,13 @@ class StockReceiptApiController extends Controller
     }
 
     public function pushAllStock(){
-        $stockReceipts = StockReceipt::where('branch_code', 2)->where('response_status', 0)->orWhereNull('response_status')->get();
+        $stockReceipts = StockReceipt::where('branch_code', $this->branchCode)->where('response_status', 0)->orWhereNull('response_status')->get();
         $listItems = StockReceiptListItem::whereIn('stock_receipts_id', $stockReceipts->pluck('id')->toArray())->where('Status', 0)->orWhereNull('Status')->get();
         $listItemArray = [];
+        $allStatusTrue = true;
 
         foreach($listItems as $item){
-            $listItemArray[] = [
+            $listItemArray = [
                 'ItemCode' => $item->item_code,
                 'LotNo' => $item->lot_no ?? 'CB-1',
                 'Quantity' => $item->quantity,
@@ -164,14 +178,14 @@ class StockReceiptApiController extends Controller
             ];
 
             $jsonRequestData = [
-                "Branch_Code" => 2,
+                "Branch_Code" => $this->branchCode,
                 "Doc_Prefix" => "SR",
                 "IssueTo" => "",
-                "GodownName" => "MAIN",
+                "GodownName" => $this->godownName,
                 "ReceivedFrom" => "RKSS",
-                'ListItems' => $listItemArray
+                'ListItems' => [$listItemArray]
             ];
-
+            
             $response = Http::withHeaders([
                 'Content-Type' => 'application/json', 
                 'Authorization' => 'Basic ' . $this->credentials,
@@ -185,10 +199,16 @@ class StockReceiptApiController extends Controller
                     'LastSavedCode' => $response['LastSavedCode'],
                 ]);
             }else{
-                $item->update(['Status' => 0, 'Message' => $response['Message']]);
-            }       
+                $allStatusTrue = false;
+                $errMsg[] = '<strong>Warning! for ItemCode: ' . $item->item_code . '</strong>, ' . $response['Message'];
+                $item->update(['Status' => 0, 'Message' =>  $response['Message']]);
+            }
         }
-        return redirect()->route('stock-receipt.index')->with('danger', $response['Message']);
+
+        return redirect()->route('stock-receipt.index')->with(
+            $allStatusTrue ? 'success' : 'pushAllStockError',
+            $allStatusTrue ? 'All stocks processed successfully.' : $errMsg
+        );
     }
 
     public function getItemDetails($itemName)
@@ -221,6 +241,11 @@ class StockReceiptApiController extends Controller
         $search = $request->search;
         $stockReceipts = StockReceiptListItem::where('item_name', 'LIKE', '%' . $search . '%')->orWhere('item_code', 'LIKE', '%' . $search . '%')->latest()->paginate(25);
         return view('stock-receipt.list', compact('stockReceipts'));
+    }
+
+    public function pushStockList(){
+        $stockReceipts = StockReceiptListItem::where('Status', 0)->orWhere('Status', Null)->latest()->paginate(10);
+        return view('stock-receipt.push-list', compact('stockReceipts'));
     }
 
     public function pushStockEditForm(String $id){
@@ -257,7 +282,7 @@ class StockReceiptApiController extends Controller
             'Authorization' => 'Basic ' . $this->credentials,
         ])->post($this->saveReceiptStockEndPoint, $jsonRequest);
         
-        if ($response['Status'] !== false && $response['LastSavedDocNo'] !== 0) {
+        if($response['Status'] !== false) {
             StockReceiptListItem::find($listItemId)->update([
                 'item_code' => $request->item_code,
                 'lot_no' => $request->lot_no,
@@ -273,7 +298,8 @@ class StockReceiptApiController extends Controller
             ]);
 
             return redirect()->route('view.pushList')->with('success', 'Stock successfully pushed again.');
-        } else {
+        }else{
+            StockReceiptListItem::find($listItemId)->update(['Message' => $response['Message']]);
             return redirect()->route('edit.pushForm', ['id' => $listItemId])->with('danger', $response['Message']);
         }
     }
