@@ -21,6 +21,7 @@ class StockReceiptApiController extends Controller
     protected $credentials;
     protected $branchCode;
     protected $godownName;
+    protected $docPrefix;
 
     public function __construct()
     {   
@@ -35,6 +36,7 @@ class StockReceiptApiController extends Controller
         $this->middleware(function ($request, $next) {
             $this->branchCode = Auth::user()->ul ?? 2;  
             $this->godownName = "MATERIALS";  
+            $this->docPrefix = "MTR";  
             return $next($request);
         });
         
@@ -75,7 +77,7 @@ class StockReceiptApiController extends Controller
                 'reference_date' => $request->refrence_date,
                 'user_prefix' => $request->user_prefix,
                 'branch_code' => $this->branchCode,
-                'doc_prefix' => 'SR',
+                'doc_prefix' => $this->docPrefix,
                 'issued_to' => '',
                 'godown_name' => $this->godownName,
                 'received_from' => $request->refrence_document_no,  /* Logic for serialization writen in Model */
@@ -129,7 +131,7 @@ class StockReceiptApiController extends Controller
             
             $jsonRequestData = [
                 "Branch_Code" => $this->branchCode,
-                "Doc_Prefix" => "SR",
+                "Doc_Prefix" => $this->docPrefix,
                 "IssueTo" => "",
                 "GodownName" => $this->godownName,
                 "ReceivedFrom" => $item->stockReceipt->received_from,

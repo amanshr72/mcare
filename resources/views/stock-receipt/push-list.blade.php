@@ -18,14 +18,10 @@
                             <th scope="col" class="px-4 py-3">Sno</th>
                             <th scope="col" class="px-4 py-3">Item Name</th>
                             <th scope="col" class="px-4 py-3">Item Code</th>
-                            <th scope="col" class="px-4 py-3">Vendor Name</th>
                             <th scope="col" class="px-4 py-3">Batch Number</th>
                             <th scope="col" class="px-4 py-3">Quantity</th>
                             <th scope="col" class="px-4 py-3">Manufacturing Name</th>
                             <th scope="col" class="px-4 py-3">Manufacturing Date</th>
-                            <th scope="col" class="px-4 py-3">Tax</th>
-                            <th scope="col" class="px-4 py-3">Tax Amount</th>
-                            <th scope="col" class="px-4 py-3">Gross Amount</th>
                             <th scope="col" class="px-4 py-3">Final Amount</th>
                             <th scope="col" class="px-4 py-3">Status</th>
                             <th scope="col" class="px-4 py-3">Action</th>
@@ -37,14 +33,10 @@
                                 <td class="p-3 text-black font-bold">{{ ($stockReceipts->currentPage() - 1) * $stockReceipts->perPage() + $loop->iteration }}.</td>
                                 <th scope="row" class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $stock->item_name }}</th>
                                 <td class="p-3">{{ $stock->item_code }}</td>
-                                <td class="p-3">{{ $stock->vendor_name }}</td>
                                 <td class="p-3">{{ $stock->batch_number }}</td>
                                 <td class="p-3">{{ $stock->quantity }}</td>
                                 <td class="p-3">{{ $stock->mfg_name }}</td>
                                 <td class="p-3">{{ $stock->mfg_date }}</td>
-                                <td class="p-3">{{ $stock->tax .'%' }}</td>
-                                <td class="p-3">{{ '₹' . $stock->tax_amount }}</td>
-                                <td class="p-3">{{ '₹' . $stock->gross_amount }}</td>
                                 <td class="p-3">{{ '₹' . $stock->final_amount }}</td>
                                 <td class="p-3">{{ $stock->Message }}</td>
                                 <td class="p-3">
